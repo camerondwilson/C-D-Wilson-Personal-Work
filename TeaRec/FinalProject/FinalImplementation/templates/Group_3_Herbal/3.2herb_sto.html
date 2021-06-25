@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="{{ url_for('static',filename='styles/res.css') }}" rel="stylesheet" media="screen">
+        <title>Recommendation</title>
+    </head>
+    <body>
+        <div class="header" id="header">
+            <h1>Recommendations: Herbal-Stomach</h1>
+        </div>
+
+        <h1>Peppermint-Mint Tea<h1>
+        <h2>Caffeine-Free</h2>
+        <h3>Mint tea is a caffeine-free, derivative of peppermint tea that has a sharp, earthy, herbal taste.   
+            <br>This drink is great for relieving cold symptoms and combatting a multitude of stomach problems. 
+            <br><br>Click on the image to purchase.
+        </h3>
+        <div class="content">
+            <div class="column">
+                <a href="https://www.teaforte.com/store/gourmet-tea/citrus-mint/">
+                    <img src="{{url_for('static', filename='mint.jpg')}}" style="height:257px;width:300px;" /></a>
+            </div>
+        </div>
+
+        <br><br><h1>Green Tea<h1>
+        <h2>Caffeinated</h2>
+        <h3>Green tea is a caffeinated, light tea that has an earthy and herbal taste.   
+            <br>This drink is great for weight loss, digestion, and combatting a multitude of stomach problems. 
+            <br><br>Click on the image to purchase.
+        </h3>
+        <div class="content">
+            <div class="column">
+                <a href="https://www.teaforte.com/store/gourmet-tea/jasmine-green/" target="_blank"> 
+                    <img src="{{url_for('static', filename='green.jpg')}}" style="height:257px;width:300px;" /></a>
+            </div>
+        </div>
+        <p align="center"><a href=back ><button class=grey 
+            style="height:25px;width:75px; background-color:rgb(107, 29, 16); color: white;">Restart</button></a></p>
+
+        <script>
+            window.onscroll = function() {myFunction()};
+            
+            var header = document.getElementById("myHeader");
+            var sticky = header.offsetTop;
+            
+            function myFunction() {
+                if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+                } else {
+                header.classList.remove("sticky");
+                }
+            }
+            </script>
+    </body>
+</html>

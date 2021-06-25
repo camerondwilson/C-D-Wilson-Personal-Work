@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="{{ url_for('static',filename='styles/res.css') }}" rel="stylesheet" media="screen">
+        <title>Recommendation</title>
+    </head>
+    <body>
+        <div class="header" id="header">
+            <h1>Recommendations: Flowery-Cold</h1>
+        </div>
+
+        <h1>Chamomile Tea<h1>
+        <h2>Caffeine-Free</h2>
+        <h3>Chamomile tea is a caffeine-free, light tea that has a mild flowery, herbal, and sweet taste.   
+            <br>This drink is great for sleep, relieving cold symptoms, and combatting nerves and anxiety. 
+            <br><br>Click on the image to purchase.
+        </h3>
+        <div class="content">
+            <div class="column">
+                <a href="https://www.teaforte.com/store/gourmet-tea/lemon-lavender/">
+                    <img src="{{url_for('static', filename='chamomile.jpg')}}" alt="chamomile tea" style="height:257px;width:300px;" /></a>
+            </div>
+        </div>
+
+        <br><br><h1>Hibiscus Tea<h1>
+        <h2>Caffeinated</h2>
+        <h3>Hibiscus tea is a caffeinated, colorful tea that has a strong flowery, fruity taste.   
+            <br>This drink is great for relieving cold symptoms and combatting high blood pressure. 
+            <br><br>Click on the image to purchase.
+        </h3>
+        <div class="content">
+            <div class="column">
+                <a href="https://www.teaforte.com/store/gourmet-tea/hibiscus-blossom/" target="_blank"> 
+                    <img src="{{url_for('static', filename='hibiscus.jpg')}}" style="height:257px;width:300px;" /></a>
+            </div>
+        </div>
+        <p align="center"><a href=back ><button class=grey 
+            style="height:25px;width:75px; background-color:rgb(107, 29, 16); color: white;">Restart</button></a></p>
+
+        <script>
+            window.onscroll = function() {myFunction()};
+            
+            var header = document.getElementById("myHeader");
+            var sticky = header.offsetTop;
+            
+            function myFunction() {
+                if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+                } else {
+                header.classList.remove("sticky");
+                }
+            }
+            </script>
+    </body>
+</html>

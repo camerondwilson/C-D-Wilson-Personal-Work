@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h1>RSVPed People</h1>
+    <ul>
+        {% for rsvp in rsvps %}
+            <li>{{ rsvp[1] }} from {{ rsvp[0] }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

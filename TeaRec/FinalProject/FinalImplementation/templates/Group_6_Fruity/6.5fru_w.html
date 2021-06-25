@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="{{ url_for('static',filename='styles/res.css') }}" rel="stylesheet" media="screen">
+        <title>Recommendation</title>
+    </head>
+    <body>
+        <div class="header" id="header">
+            <h1>Recommendations: Fruity-Weight</h1>
+        </div>
+
+        <h1>Oolong Tea<h1>
+        <h2>Caffeinated</h2>
+        <h3>Oolong tea is a caffeinated, light tea that has a flowery and sometimes fruity taste.   
+            <br>This drink is great for weight loss and digestion. 
+            <br><br>Click on the image to purchase.
+        </h3>
+        <div class="content">
+            <div class="column">
+                <a href="https://www.teaforte.com/store/gourmet-tea/mountain-oolong-tea/" target="_blank"> 
+                    <img src="{{url_for('static', filename='oolong.jpg')}}" style="height:257px;width:300px;" /></a>
+            </div>
+        </div>
+    
+        <br><br><h1>White Tea<h1>
+        <h2>Caffeinated</h2>
+        <h3>White tea is a caffeinated, light tea that has a sweet and sometimes fruity taste.   
+            <br>This drink is great for weight loss, digestion and combatting nerves and anxiety. 
+            <br><br>Click on the image to purchase.
+        </h3>
+        <div class="content">
+            <div class="column">
+                <a href="https://www.teaforte.com/store/gourmet-tea/vanilla-rose/" target="_blank"> 
+                <img src="{{url_for('static', filename='white.jpg')}}" style="height:257px;width:300px;" /></a>
+            </div>
+        </div>
+        <p align="center"><a href=back ><button class=grey 
+            style="height:25px;width:75px; background-color:rgb(107, 29, 16); color: white;">Restart</button></a></p>
+
+        <script>
+            window.onscroll = function() {myFunction()};
+            
+            var header = document.getElementById("myHeader");
+            var sticky = header.offsetTop;
+            
+            function myFunction() {
+                if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+                } else {
+                header.classList.remove("sticky");
+                }
+            }
+            </script>
+    </body>
+</html>

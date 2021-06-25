@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <div class="header" id="header">
+        <h1>Tea Recommendation System</h1>
+    </div>
+    
+    <h2>Fill out the following, and click submit to see the recommendations.</h2>
+    <form action="/preferences" method="post">
+        <input autocomplete="off" autofocus name="name" placeholder="Name" type="text">
+        <select name="taste">
+            <option disabled selected value="taste">Taste</option>
+            <option value="Flowery">Flowery</option>
+            <option value="Sweet">Sweet</option>
+            <option value="Herbal">Herbal</option>
+            <option value="Spicy">Spicy</option>
+            <option value="Earthy">Earthy</option>
+            <option value="Fruity">Fruity</option>
+        </select>
+        <select name="effect">
+            <option disabled selected value="effect">Effect</option>
+            <option value="Nerves">Nerves</option>
+            <option value="Stomach">Stomach</option>
+            <option value="Cold">Cold</option>
+            <option value="Blood Pressure">Blood Pressure</option>
+            <option value="Weight">Weight</option>
+        </select>
+        <input type="submit" value="Preferences" style="background-color:rgb(107, 29, 16); color: white;">
+    </form>
+
+    <script>
+        document.querySelector('form').onsubmit = function() {
+            if (!document.querySelector('input').value) {
+                alert('You must fill out your name');
+                return false;
+            }
+            else if (!document.querySelector('select').value) {
+                alert('You must fill out all preferences');
+                return false;
+            }
+            return true;
+        };
+    </script>
+    <script>
+        window.onscroll = function() {myFunction()};
+        
+        var header = document.getElementById("myHeader");
+        var sticky = header.offsetTop;
+        
+        function myFunction() {
+            if (window.pageYOffset > sticky) {
+            header.classList.add("sticky");
+            } else {
+            header.classList.remove("sticky");
+            }
+        }
+        </script>
+{% endblock %}

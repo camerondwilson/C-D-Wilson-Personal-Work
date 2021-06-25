@@ -1,0 +1,24 @@
+body {
+    background-color: white;
+    font: Clarkson,Proxima Nova,Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+    box-sizing: border-box;
+    text-align: center; 
+    color: black;
+  }
+  
+  .header {
+    padding: 10px 16px;
+    background: rgb(107, 29, 16);
+    color: #f1f1f1;
+  }
+    
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  
+  .sticky + .content {
+    padding-top: 102px;
+  }
+
