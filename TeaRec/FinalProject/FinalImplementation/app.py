@@ -94,7 +94,7 @@ def rsvped():
     reader = csv.reader(file)
     rsvps = list(reader)
     file.close()
-    return render_template("list.html", preferencesR=preferences)
+    return render_template("list.html", preferences=preferences)
     
 @app.route('/back')
 def back():
