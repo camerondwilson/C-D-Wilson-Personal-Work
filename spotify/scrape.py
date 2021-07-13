@@ -1,65 +1,62 @@
+import pandas 
 from bs4 import BeautifulSoup
-import pandas as pd
 import requests
 from time import sleep
 from datetime import date, timedelta
+from selenium import webdriver
 
-#create empty arrays for data we're collecting
+url=[]
 dates=[]
-url_list=[]
-final = []
+final=[]
 
-#map site
+#site mapping
+#idk if date in url is needed ex:https://spotifycharts.com/regional/global/daily/2021-07-11
+site = "https://spotifycharts.com/regional/global/daily/"
+first= date(2020, 7, 11)
+last= date(2021, 7, 11)
+year= last-first
 
-url = "https://spotifycharts.com/regional/us/daily/"
-start_date= date(2019, 9, 1)
-end_date= date(2020, 9, 1)
-
-delta= end_date-start_date
-
-for i in range(delta.days+1):
-	day = start_date+timedelta(days=i)
-	day_string= day.strftime("%Y-%m-%d")
+#needed to look up how to use timedelta: https://docs.python.org/3/library/datetime.html
+for i in range(year.days+1):
+	day=first+timedelta(days=i)
+    #needed to look line 21 up
+	day_string=day.strftime("%Y-%m-%d")
 	dates.append(day_string)
 
-def add_url():
+#think i need this if url doesn't have dates
+def add_site():
 	for date in dates:
-		c_string = url+date
-		url_list.append(c_string)
+		str=site+date
+		url.append(str)
 
-add_url()
+add_site()
 
-#function for going through each row in each url and finding relevant song info
-
-def song_scrape(x):
-    pg = x
-    for tr in songs.find("tbody").findAll("tr"):
+#song info
+def scrape(y):
+    sngl=y
+    for tr in table.find("tbody").findAll("tr"):
         artist= tr.find("td", {"class": "chart-table-track"}).find("span").text
         artist= artist.replace("by ","").strip()
-  
         title= tr.find("td", {"class": "chart-table-track"}).find("strong").text
- 
-        songid= tr.find("td", {"class": "chart-table-image"}).find("a").get("href")
-        songid= songid.split("track/")[1]
-    
-        url_date= x.split("daily/")[1]
+        id= tr.find("td", {"class": "chart-table-image"}).find("a").get("href")
+        id= id.split("track/")[1]
+        song_date= y.split("daily/")[1]
         
-        final.append([title, artist, songid, url_date])
-	
-#loop through urls to create array of all of our song info
+        final.append([title, artist, id, song_date])
 
-for u in url_list:
-    read_pg= requests.get(u)
-    sleep(2)
-    soup= BeautifulSoup(read_pg.text, "html.parser")
-    songs= soup.find("table", {"class":"chart-table"})
-    song_scrape(u)
+#looping
+#need review: https://selenium-python.readthedocs.io/getting-started.html
+for pgs in site:
+    driver=webdriver.Chrome()
+    driver.get(pgs) 
+    read_sngl=requests.get(pgs)
+    sleep(5,15)
+    soup=BeautifulSoup(driver.page_source, 'html.parser')
+    table=soup.find("table", {"class":"chart-table"})
+    scrape(pgs)
  
-#convert to data frame with pandas for easier data manipulation
+#commit and save
+commit = pandas.DataFrame(final, columns= ["Title", "Artist", "Song ID", "Date"])
 
-final_df = pd.DataFrame(final, columns= ["Title", "Artist", "Song ID", "Chart Date"])
-
-#write to csv
-
-with open('spmooddata.csv', 'w') as f:
-        final_df.to_csv(f, header= True, index=False)
+with open('yearsongs.csv', 'w') as f:
+        commit.to_csv(f, header= True, index=False)
